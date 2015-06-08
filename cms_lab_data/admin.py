@@ -20,6 +20,26 @@ class TaggedItemInline(GenericTabularInline):
     ordering = ('tag__name',)
 
 
+class CurrentTagsListFilter(admin.SimpleListFilter):
+    """
+    Filter records by django-taggit tags for the current model only.
+    Tags are sorted alphabetically.
+    """
+
+    title = 'Tags'
+    parameter_name = 'tag'
+
+    def lookups(self, request, model_admin):
+        model_tags = [tag.name for tag in
+            TaggedItem.tags_for(model_admin.model)]
+        model_tags.sort()
+        return tuple([(tag, tag) for tag in model_tags])
+
+    def queryset(self, request, queryset):
+        if self.value() is not None:
+            return queryset.filter(tags__name=self.value())
+
+
 @admin.register(DataFile)
 class DataFileAdmin(admin.ModelAdmin):
 
@@ -46,6 +66,10 @@ class DataFileAdmin(admin.ModelAdmin):
         'description',
         'number_of_data_file_sets',
         'number_of_tags',
+    )
+
+    list_filter = (
+        CurrentTagsListFilter,
     )
 
     save_on_top = True
@@ -114,6 +138,10 @@ class DataFileSetAdmin(admin.ModelAdmin):
         'description',
         'number_of_data_files',
         'number_of_tags',
+    )
+
+    list_filter = (
+        CurrentTagsListFilter,
     )
 
     save_on_top = True
