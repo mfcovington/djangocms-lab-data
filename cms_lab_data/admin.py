@@ -38,7 +38,7 @@ class DataFileAdmin(TaggitCounter, admin.ModelAdmin):
         'file',
         'description',
         'number_of_data_file_sets',
-        'taggit_count',
+        'taggit_counter',
     )
 
     list_filter = (
@@ -104,7 +104,7 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
         'name',
         'description',
         'number_of_data_files',
-        'taggit_count',
+        'taggit_counter',
     )
 
     list_filter = (
