@@ -54,8 +54,8 @@ class DataFileAdmin(TaggitCounter, admin.ModelAdmin):
         'description',
     )
 
-    def queryset(self, request):
-        queryset = super().queryset(request)
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
         queryset = queryset.annotate(data_file_set_count=Count('datafileset', distinct=True))
         return queryset
 
@@ -118,8 +118,8 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
         'description',
     )
 
-    def queryset(self, request):
-        queryset = super().queryset(request)
+    def get_queryset(self, request):
+        queryset = super().get_queryset(request)
         queryset = queryset.annotate(data_file_count=Count('data_files', distinct=True))
         return queryset
 
