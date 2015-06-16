@@ -28,6 +28,18 @@ class DataFile(models.Model):
         help_text='Add keyword tags that represent this data file.',
     )
 
+    def file_size_fmt(self, suffix='B'):
+        """
+        Convert file size to human-readable format
+        Based on http://stackoverflow.com/a/1094933/996114
+        """
+        size = self.file.size
+        for unit in ['','K','M','G','T','P','E','Z']:
+            if abs(size) < 1024.0:
+                return '%.1f %s%s' % (size, unit, suffix)
+            size /= 1024.0
+        return '%.1f %s%s' % (size, 'Y', suffix)
+
     def __str__(self):
         return self.name
 
