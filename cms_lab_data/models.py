@@ -42,6 +42,13 @@ class DataFileSet(models.Model):
         unique=True,
     )
 
+    label = models.CharField('label',
+        default='Data',
+        help_text='Enter a label for this Data File Set.<br>' \
+                  'This will be the heading displayed above the data files.',
+        max_length=255,
+    )
+
     description = models.TextField('description',
         blank=True,
         help_text='Enter a description of this data set.',
@@ -55,6 +62,17 @@ class DataFileSet(models.Model):
     )
 
     data_files = models.ManyToManyField(DataFile)
+
+    pagination = models.PositiveIntegerField('files / page',
+        default=0,
+        help_text="How many data files should be displayed per page? " \
+                  "To show all at once, enter '0'.",
+    )
+
+    searchable = models.BooleanField('searchable?',
+        default=True,
+        help_text='Enable data file search and keyword filter.'
+    )
 
     tags = TaggableManager(
         blank=True,

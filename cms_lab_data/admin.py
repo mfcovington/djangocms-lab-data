@@ -76,8 +76,11 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
     fieldset_data_file_set = ('Data File Set', {
         'fields': [
             'name',
+            'label',
             'description',
             'image',
+            'pagination',
+            'searchable',
         ],
     })
 
@@ -102,9 +105,12 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
 
     list_display = (
         'name',
+        'label',
         'description',
         'number_of_data_files',
+        'pagination',
         'taggit_counter',
+        'searchable',
     )
 
     list_filter = (
@@ -115,6 +121,7 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
 
     search_fields = (
         'name',
+        'label',
         'description',
     )
 
