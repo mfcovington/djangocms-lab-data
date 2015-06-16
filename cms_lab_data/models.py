@@ -37,7 +37,8 @@ class DataFile(models.Model):
 
 class DataFileSet(models.Model):
     name = models.CharField('name',
-        help_text='Enter a concise, yet descriptive, name for this data set.',
+        help_text="Enter a unique name for this Data File Set.<br>" \
+                  "This won't be displayed on the site.",
         max_length=255,
         unique=True,
     )
