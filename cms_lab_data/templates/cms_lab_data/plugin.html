@@ -17,51 +17,51 @@
       <h4>{{ instance.data_file_set.label }}</h4>
     {% endif %}
 
-      <ul class="list tidy-list">
-        {% for data_file in instance.data_file_set.data_files.all %}
-          <li>
-            <p>
-              <strong>
-                <a class="hide-on-mobile name" href="{{ data_file.file.url }}" target="_blank">
-                    {{ data_file.name }}
-                </a>
-                <a class="show-on-mobile name" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
-                    {{ data_file.name }}
-                </a>
-              </strong>
+    <ul class="list tidy-list">
+      {% for data_file in instance.data_file_set.data_files.all %}
+        <li>
+          <p>
+            <strong>
+              <a class="hide-on-mobile name" href="{{ data_file.file.url }}" target="_blank">
+                {{ data_file.name }}
+              </a>
+              <a class="show-on-mobile name" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
+                {{ data_file.name }}
+              </a>
+            </strong>
 
-              <span class="hide-on-mobile file-name-size">
-                [&nbsp;<em class="filename">{{ data_file.file.original_filename }},
-                {{ data_file.file_size_fmt }}</em>&nbsp;]
-              </span>
+            <span class="hide-on-mobile file-name-size">
+              [&nbsp;<em class="filename">{{ data_file.file.original_filename }},
+              {{ data_file.file_size_fmt }}</em>&nbsp;]
+            </span>
 
-              {% if data_file.description %}
-                <div class="hide-on-mobile description">
-                  {% if data_file.description|wordcount > 50 %}
-                    {{ data_file.description|linebreaks|truncatewords:40 }}
-                    <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
-                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                    </a>
-                  {% else %}
-                    {{ data_file.description|linebreaks }}
-                  {% endif %}
-                </div>
-              {% endif %}
-            </p>
-
-            {% if instance.data_file_set.searchable %}
-              <!-- Hidden search/filter fields -->
-              <p class="tags" style="display: none;">{% for tag in data_file.tags.values %}{{ tag.id }} {% endfor %}</p>
+            {% if data_file.description %}
+              <div class="hide-on-mobile description">
+                {% if data_file.description|wordcount > 50 %}
+                  {{ data_file.description|linebreaks|truncatewords:40 }}
+                  <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                  </a>
+                {% else %}
+                  {{ data_file.description|linebreaks }}
+                {% endif %}
+              </div>
             {% endif %}
-          </li>
-        {% endfor %}
-      </ul>
+          </p>
 
-      {% if instance.data_file_set.pagination %}
-        <div class="text-center">
-          <ul class="pagination"></ul>
-        </div>
-      {% endif %}
+          {% if instance.data_file_set.searchable %}
+            <!-- Hidden search/filter fields -->
+            <p class="tags" style="display: none;">{% for tag in data_file.tags.values %}{{ tag.id }} {% endfor %}</p>
+          {% endif %}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {% if instance.data_file_set.pagination %}
+      <div class="text-center">
+        <ul class="pagination"></ul>
+      </div>
+    {% endif %}
   </div>
 
   {% for data_file in instance.data_file_set.data_files.all %}
