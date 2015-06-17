@@ -5,6 +5,12 @@
 .break-word-wrap {
   word-wrap: break-word;
 }
+.description {
+  padding-left: 20px;
+}
+.modal .description {
+  padding-left: 10px;
+}
 
 
 /**********/

@@ -38,9 +38,9 @@
               </span>
 
               {% if data_file.description %}
-                <span class="hide-on-mobile description">
-                  &#8226; {{ data_file.description }}
-                </span>
+                <div class="hide-on-mobile description">
+                  {{ data_file.description|linebreaks }}
+                </div>
               {% endif %}
             </p>
 
