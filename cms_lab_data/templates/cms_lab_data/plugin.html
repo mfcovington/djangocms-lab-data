@@ -1,0 +1,101 @@
+{% load cms_tags sekizai_tags staticfiles %}
+
+
+{% block content %}
+
+  {% addtoblock "css" %}
+    {% if instance.data_file_set.searchable %}
+      <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
+    {% endif %}
+    <link rel="stylesheet" type="text/css" href="{% static 'cms_lab_data/css/app.css' %}">
+  {% endaddtoblock %}
+
+  <div id="data-list-dfs{{ instance.data_file_set.id }}-i{{ instance.id }}">
+    <form style="display:inline;">
+
+    {% if instance.data_file_set.searchable %}
+      {% include "cms_lab_data/_header-with-search-filter.html" with data_file_set=instance.data_file_set %}
+    {% else %}
+      <h4>{{ instance.data_file_set.label }}</h4>
+    {% endif %}
+
+      <ul class="list" style="list-style: none; padding-left: 0;">
+        {% for data_file in instance.data_file_set.data_files.all %}
+          <li>
+            <p>
+              <strong>
+                <a href="{{ data_file.file.url }}" target="_blank" class="name">
+                    {{ data_file.name }}
+                </a>
+              </strong>
+
+              <span style="color: gray;">
+                [&nbsp;<em class="filename">{{ data_file.file.original_filename }},
+                {{ data_file.file_size_fmt }}</em>&nbsp;]
+              </span>
+
+              {% if data_file.description %}
+                <span class="description">
+                  &#8226; {{ data_file.description }}
+                </span>
+              {% endif %}
+            </p>
+
+            {% if instance.data_file_set.searchable %}
+              <!-- Hidden search/filter fields -->
+              <p class="tags" style="display: none;">{% for tag in data_file.tags.values %}{{ tag.id }} {% endfor %}</p>
+            {% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+
+      {% if instance.data_file_set.pagination %}
+        <div class="text-center">
+          <ul class="pagination"></ul>
+        </div>
+      {% endif %}
+    </form>
+  </div>
+
+  {% addtoblock "js" %}
+    <script src="{% static 'cms_lab_data/js/list.min.js' %}"></script>
+
+    {% if instance.data_file_set.pagination %}
+      <script src="{% static 'cms_lab_data/js/list.pagination.min.js' %}"></script>
+    {% endif %}
+
+    {% if instance.data_file_set.searchable %}
+      <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
+      <script src="{% static 'cms_lab_data/js/search-filter-data.js' %}"></script>
+    {% endif %}
+
+    <script>
+      var options = {
+        valueNames: [ 'name', 'filename', 'description', 'tags' ],
+
+        {% if instance.data_file_set.pagination %}
+          page: {{ instance.data_file_set.pagination }},
+          plugins: [
+            ListPagination({})
+          ],
+        {% endif %}
+
+      };
+      var dataListDfs{{ instance.data_file_set.id}}I{{ instance.id }} = new List('data-list-dfs{{ instance.data_file_set.id }}-i{{ instance.id }}', options);
+
+      $( "#data-tags-select-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}" ).change(function() {
+        filterByTags(dataListDfs{{ instance.data_file_set.id}}I{{ instance.id }}, "data-tags-select-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}");
+      });
+
+      $( "#data-search-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}" ).keyup(function() {
+        filterByTags(dataListDfs{{ instance.data_file_set.id}}I{{ instance.id }}, "data-tags-select-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}");
+      });
+
+      $("#data-tags-select-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}").select2({
+          placeholder: "Filter Keywords",
+      });
+    </script>
+
+  {% endaddtoblock %}
+
+{% endblock content %}
