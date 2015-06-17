@@ -1,5 +1,6 @@
 from django.db import models
 
+from cms.models import CMSPlugin
 from filer.fields.file import FilerFileField
 from filer.fields.image import FilerImageField
 from taggit.managers import TaggableManager
