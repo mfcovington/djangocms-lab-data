@@ -29,13 +29,13 @@
                 </a>
               </strong>
 
-              <span style="color: gray;">
+              <span style="color: gray;" class="hide-on-mobile">
                 [&nbsp;<em class="filename">{{ data_file.file.original_filename }},
                 {{ data_file.file_size_fmt }}</em>&nbsp;]
               </span>
 
               {% if data_file.description %}
-                <span class="description">
+                <span class="hide-on-mobile description">
                   &#8226; {{ data_file.description }}
                 </span>
               {% endif %}

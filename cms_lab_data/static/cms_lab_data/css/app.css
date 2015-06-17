@@ -19,3 +19,20 @@ span.select2-selection.select2-selection--multiple {
   border-color: #ccc;
   min-height: 34px;
 }
+
+
+/****************************************/
+/* Visibility on Different Screen Sizes */
+/****************************************/
+
+.show-on-mobile {
+  display: none;
+}
+@media screen and (max-width: 450px) {
+  .hide-on-mobile {
+    display: none;
+  }
+  .show-on-mobile {
+    display: inline;
+  }
+}
