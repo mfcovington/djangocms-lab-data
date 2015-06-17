@@ -8,8 +8,15 @@
 .description {
   padding-left: 20px;
 }
+.file-name-size {
+  color: gray;
+}
 .modal .description {
   padding-left: 10px;
+}
+.tidy-list {
+  list-style: none;
+  padding-left: 0;
 }
 
 

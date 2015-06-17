@@ -19,7 +19,7 @@
       <h4>{{ instance.data_file_set.label }}</h4>
     {% endif %}
 
-      <ul class="list" style="list-style: none; padding-left: 0;">
+      <ul class="list tidy-list">
         {% for data_file in instance.data_file_set.data_files.all %}
           <li>
             <p>
@@ -32,7 +32,7 @@
                 </a>
               </strong>
 
-              <span style="color: gray;" class="hide-on-mobile">
+              <span class="hide-on-mobile file-name-size">
                 [&nbsp;<em class="filename">{{ data_file.file.original_filename }},
                 {{ data_file.file_size_fmt }}</em>&nbsp;]
               </span>
