@@ -97,3 +97,10 @@ class DataFileSet(models.Model):
 
     class Meta:
         ordering = ('name',)
+
+
+class DataFileSetPlugin(CMSPlugin):
+    data_file_set = models.ForeignKey('cms_lab_data.DataFileSet')
+
+    def __str__(self):
+        return self.data_file_set.name
