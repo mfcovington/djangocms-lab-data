@@ -39,7 +39,14 @@
 
               {% if data_file.description %}
                 <div class="hide-on-mobile description">
-                  {{ data_file.description|linebreaks }}
+                  {% if data_file.description|wordcount > 50 %}
+                    {{ data_file.description|linebreaks|truncatewords:40 }}
+                    <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </a>
+                  {% else %}
+                    {{ data_file.description|linebreaks }}
+                  {% endif %}
                 </div>
               {% endif %}
             </p>
