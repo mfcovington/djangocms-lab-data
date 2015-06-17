@@ -24,7 +24,10 @@
           <li>
             <p>
               <strong>
-                <a href="{{ data_file.file.url }}" target="_blank" class="name">
+                <a class="hide-on-mobile name" href="{{ data_file.file.url }}" target="_blank">
+                    {{ data_file.name }}
+                </a>
+                <a class="show-on-mobile name" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
                     {{ data_file.name }}
                 </a>
               </strong>
@@ -56,6 +59,10 @@
       {% endif %}
     </form>
   </div>
+
+  {% for data_file in instance.data_file_set.data_files.all %}
+    {% include "cms_lab_data/_modal.html" %}
+  {% endfor %}
 
   {% addtoblock "js" %}
     <script src="{% static 'cms_lab_data/js/list.min.js' %}"></script>
