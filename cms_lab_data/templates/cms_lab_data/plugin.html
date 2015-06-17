@@ -11,8 +11,6 @@
   {% endaddtoblock %}
 
   <div id="data-list-dfs{{ instance.data_file_set.id }}-i{{ instance.id }}">
-    <form style="display:inline;">
-
     {% if instance.data_file_set.searchable %}
       {% include "cms_lab_data/_header-with-search-filter.html" with data_file_set=instance.data_file_set %}
     {% else %}
@@ -64,7 +62,6 @@
           <ul class="pagination"></ul>
         </div>
       {% endif %}
-    </form>
   </div>
 
   {% for data_file in instance.data_file_set.data_files.all %}
