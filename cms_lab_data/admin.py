@@ -79,7 +79,14 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
             'label',
             'description',
             'image',
+        ],
+    })
+
+    fieldset_display_settings = ('Display Settings', {
+        'fields': [
             'pagination',
+            'max_words_file_description',
+            'word_buffer_file_description',
             'searchable',
         ],
     })
@@ -92,6 +99,7 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
 
     fieldsets = [
         fieldset_data_file_set,
+        fieldset_display_settings,
         fieldset_data_files,
     ]
 
@@ -109,6 +117,8 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
         'description',
         'number_of_data_files',
         'pagination',
+        'max_words_file_description',
+        'word_buffer_file_description',
         'taggit_counter',
         'searchable',
     )

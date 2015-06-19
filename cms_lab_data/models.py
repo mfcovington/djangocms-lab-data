@@ -83,6 +83,20 @@ class DataFileSet(models.Model):
                   "To show all at once, enter '0'.",
     )
 
+    max_words_file_description = models.PositiveIntegerField('max words',
+        default=40,
+        help_text='Enter the maximum # of words to display for a data file description.<br>' \
+                  'Truncated descriptions will have a button for displaying more info.',
+    )
+
+    word_buffer_file_description = models.PositiveIntegerField('word buffer',
+        default=10,
+        help_text="The 'word buffer' prevents descriptions from being truncated " \
+                  "if they are only slightly over the 'max words' cutoff.<br>" \
+                  "For example, with 'max words' of 40 and a 'word buffer' of 10, " \
+                  "descriptions longer than 50 words will be truncated to 40.",
+    )
+
     searchable = models.BooleanField('searchable?',
         default=True,
         help_text='Enable data file search and keyword filter.'

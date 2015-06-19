@@ -37,7 +37,7 @@
 
             {% if data_file.description %}
               <div class="hide-on-mobile description">
-                {% with max_words=40 word_buffer=10 %}
+                {% with max_words=instance.data_file_set.max_words_file_description word_buffer=instance.data_file_set.word_buffer_file_description %}
                   {% if data_file.description|wordcount > max_words|add:word_buffer %}
                     {{ data_file.description|linebreaks|truncatewords:max_words }}
                     <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
