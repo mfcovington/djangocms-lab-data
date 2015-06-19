@@ -19,6 +19,7 @@ class DataFileAdmin(TaggitCounter, admin.ModelAdmin):
     fieldset_data_file = ('Data File', {
         'fields': [
             'name',
+            'slug',
             'file',
             'description',
         ],
@@ -44,6 +45,10 @@ class DataFileAdmin(TaggitCounter, admin.ModelAdmin):
     list_filter = (
         TaggitListFilter,
     )
+
+    prepopulated_fields = {
+        'slug': ('name',),
+    }
 
     save_on_top = True
 
@@ -76,6 +81,7 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
     fieldset_data_file_set = ('Data File Set', {
         'fields': [
             'name',
+            'slug',
             'label',
             'description',
             'image',
@@ -126,6 +132,10 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
     list_filter = (
         TaggitListFilter,
     )
+
+    prepopulated_fields = {
+        'slug': ('name',),
+    }
 
     save_on_top = True
 

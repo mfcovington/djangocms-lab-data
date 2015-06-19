@@ -13,6 +13,13 @@ class DataFile(models.Model):
         unique=True,
     )
 
+    slug = models.SlugField(
+        help_text='Enter a unique <a href="https://en.wikipedia.org/wiki/' \
+                  'Semantic_URL#Slug" target="_blank">slug</a> for this data file.<br>' \
+                  '(Prepopulated in the admin page based on the data file name.)',
+        unique=True,
+    )
+
     file = FilerFileField(
         help_text='Select/Upload a data file.',
         related_name='%(app_label)s_%(class)s_file',
@@ -53,6 +60,13 @@ class DataFileSet(models.Model):
         help_text="Enter a unique name for this Data File Set.<br>" \
                   "This won't be displayed on the site.",
         max_length=255,
+        unique=True,
+    )
+
+    slug = models.SlugField(
+        help_text='Enter a unique <a href="https://en.wikipedia.org/wiki/' \
+                  'Semantic_URL#Slug" target="_blank">slug</a> for this data file set.<br>' \
+                  '(Prepopulated in the admin page based on the data file set name.)',
         unique=True,
     )
 
