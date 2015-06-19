@@ -37,14 +37,16 @@
 
             {% if data_file.description %}
               <div class="hide-on-mobile description">
-                {% if data_file.description|wordcount > 50 %}
-                  {{ data_file.description|linebreaks|truncatewords:40 }}
-                  <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
-                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-                  </a>
-                {% else %}
-                  {{ data_file.description|linebreaks }}
-                {% endif %}
+                {% with max_words=40 word_buffer=10 %}
+                  {% if data_file.description|wordcount > max_words|add:word_buffer %}
+                    {{ data_file.description|linebreaks|truncatewords:max_words }}
+                    <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
+                      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                    </a>
+                  {% else %}
+                    {{ data_file.description|linebreaks }}
+                  {% endif %}
+                {% endwith %}
               </div>
             {% endif %}
           </p>
