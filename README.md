@@ -56,6 +56,25 @@ CMS Lab Data is a Django app for organizing data files and sets of data files wi
         THUMBNAIL_SUBDIR = 'versions'
         ```
 
+- To access `cms_lab_data` pages without using a django CMS AppHook, include URL configurations for `cms_lab_data` and media (if `DEBUG == True`) in your project's `urls.py` file:
+
+    ```python
+    ...
+    from django.conf import settings
+
+    urlpatterns = [
+        ...
+        url(r'^data/', include('cms_lab_data.urls', namespace='cms_lab_data')),
+        ...
+    ]
+
+    if settings.DEBUG:
+        urlpatterns += [
+            (r'^media/(?P<path>.*)$', 'django.views.static.serve',
+                {'document_root': settings.MEDIA_ROOT})
+        ]
+    ```
+
 - Run `python manage.py makemigrations cms_lab_data` to create the `cms_lab_data` migrations.
 
 - Run `python manage.py migrate` to create the `cms_lab_data` models.
