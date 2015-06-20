@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load sekizai_tags staticfiles %}
+
+
+{% block content %}
+
+  {% addtoblock "css" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'cms_lab_data/css/app.css' %}">
+  {% endaddtoblock %}
+
+  <div class="jumbotron">
+    <h1>Data and Data Sets</h1>
+
+    <p>
+      Data can be accessed via a single composite list of all data files
+      or via smaller curated collections of data files.
+    </p>
+
+    <p>
+      <a class="btn btn-info btn-lg" href="{% url 'cms_lab_data:data_file_list' %}" role="button">
+        {{ data_file_count }} Data File{{ data_file_count|pluralize }}
+      </a>
+      <a class="btn btn-info btn-lg" href="{% url 'cms_lab_data:data_file_set_list' %}" role="button">
+        {{ data_file_set_count }} Data File Set{{ data_file_set_count|pluralize }}
+      </a>
+    </p>
+  </div>
+
+{% endblock content %}

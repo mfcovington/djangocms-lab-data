@@ -11,6 +11,9 @@
 .file-name-size {
   color: gray;
 }
+.jumbotron .btn {
+  margin-top: 8px;
+}
 .modal .description,
 .summary .description {
   padding-left: 10px;
