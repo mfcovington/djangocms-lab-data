@@ -14,6 +14,14 @@
 .modal .description {
   padding-left: 10px;
 }
+.tag-list {
+  list-style: none;
+  padding-left: 0;
+}
+.tag-list-item {
+  display: inline;
+  padding-left: 10px;
+}
 .tidy-list {
   list-style: none;
   padding-left: 0;
