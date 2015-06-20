@@ -5,3 +5,14 @@
   <p><strong>Description:</strong></p>
   <div class="description">{{ data_file.description|linebreaks }}</div>
 {% endif %}
+
+{% if data_file.tags.count > 0 %}
+  <p>
+    <strong>Tags:</strong>
+    <ul class="tag-list">
+      {% for tag in data_file.tags.all|dictsort:"name" %}
+        <li class="tag-list-item"><span class="label label-primary">{{ tag.name }}</span></li>
+      {% endfor %}
+    </ul>
+  </p>
+{% endif %}
