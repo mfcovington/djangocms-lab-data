@@ -79,6 +79,9 @@ span.select2-selection.select2-selection--multiple {
   display: none;
 }
 @media screen and (max-width: 450px) {
+  .full-width-on-mobile {
+    width: 100%;
+  }
   .hide-on-mobile {
     display: none;
   }
