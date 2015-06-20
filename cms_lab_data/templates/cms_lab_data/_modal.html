@@ -9,16 +9,13 @@
 
       <div class="modal-body">
         <div class="container-fluid">
-          <p class="break-word-wrap"><strong>File:</strong> {{ data_file.file.original_filename }}</p>
-          <p><strong>Size:</strong> {{ data_file.file_size_fmt }}</p>
-          <p><strong>Description:</strong></p>
-          <div class="description">{{ data_file.description|linebreaks }}</div>
+          {% include "cms_lab_data/_datafile_summary.html" %}
         </div>
       </div>
 
       <div class="modal-footer hide-on-mobile">
         <div class="btn-group" role="group" aria-label="...">
-          <a href="{{ data_file.file.url }}" class="btn btn-success" target="_blank">Download File</a>
+          {% include "cms_lab_data/_download_file_btn.html" %}
         </div>
         <div class="btn-group" role="group" aria-label="...">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -29,7 +26,7 @@
         <div class="container-fluid">
           <div class="row-fluid">
             <div class="btn-group-vertical col-xs-12" role="group" aria-label="...">
-              <a href="{{ data_file.file.url }}" class="btn btn-success" target="_blank">Download File</a>
+              {% include "cms_lab_data/_download_file_btn.html" %}
             </div>
             <div class="btn-group-vertical col-xs-12" role="group" aria-label="...">
               <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
