@@ -11,7 +11,8 @@
 .file-name-size {
   color: gray;
 }
-.modal .description {
+.modal .description,
+.summary .description {
   padding-left: 10px;
 }
 .tag-list {

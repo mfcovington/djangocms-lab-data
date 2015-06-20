@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load sekizai_tags staticfiles %}
+
+
+{% block content %}
+
+  {% addtoblock "css" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'cms_lab_data/css/app.css' %}">
+  {% endaddtoblock %}
+
+  <div class="container-fluid summary">
+    <h1>{{ object.name }}</h1>
+    <hr>
+    {% include "cms_lab_data/_datafile_summary.html" with data_file=object %}
+    <hr>
+    {% include "cms_lab_data/_download_file_btn.html" with data_file=object %}
+  </div>
+
+{% endblock content %}
