@@ -53,7 +53,7 @@
 
           {% if instance.data_file_set.searchable %}
             <!-- Hidden search/filter fields -->
-            <p class="tags" style="display: none;">{% for tag in data_file.tags.values %}{{ tag.id }} {% endfor %}</p>
+            <p class="tags" style="display: none;">{% for tag in data_file.tags.all %}{{ tag.id }} {% endfor %}</p>
           {% endif %}
         </li>
       {% endfor %}
