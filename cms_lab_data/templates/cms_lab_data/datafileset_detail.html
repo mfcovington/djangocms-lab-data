@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% load sekizai_tags staticfiles %}
+
+
+{% block content %}
+
+  {% addtoblock "css" %}
+    <link rel="stylesheet" type="text/css" href="{% static 'cms_lab_data/css/app.css' %}">
+  {% endaddtoblock %}
+
+  <div class="container-fluid summary">
+    <h1>{{ object.name }}</h1>
+
+    {% if object.description %}
+      <p><strong>Description:</strong></p>
+      <div class="description">{{ object.description|linebreaks }}</div>
+    {% endif %}
+
+    <p><strong>Number of Files:</strong> {{ object.data_files.count }}</p>
+
+    {% if object.tags.count > 0 %}
+      <p>
+        <strong>Tags:</strong>
+        <ul class="tag-list">
+          {% for tag in object.tags.all|dictsort:"name" %}
+            <li class="tag-list-item"><span class="label label-primary">{{ tag.name }}</span></li>
+          {% endfor %}
+        </ul>
+      </p>
+    {% endif %}
+
+  </div>
+
+{% endblock content %}
