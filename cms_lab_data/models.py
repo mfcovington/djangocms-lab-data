@@ -92,7 +92,7 @@ class DataFileSet(models.Model):
     data_files = models.ManyToManyField(DataFile)
 
     pagination = models.PositiveIntegerField('files / page',
-        default=0,
+        default=10,
         help_text="How many data files should be displayed per page? " \
                   "To show all at once, enter '0'.",
     )
