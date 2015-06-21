@@ -5,6 +5,9 @@
 .break-word-wrap {
   word-wrap: break-word;
 }
+.no-word-wrap {
+  white-space: nowrap;
+}
 .description {
   padding-left: 20px;
 }
