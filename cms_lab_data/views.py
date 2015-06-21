@@ -1,3 +1,6 @@
+import collections
+import operator
+
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
@@ -19,6 +22,24 @@ class DataFileDetailView(DetailView):
 class DataFileListView(ListView):
 
     model = DataFile
+
+
+    def get_context_data(self, **kwargs):
+        context = super(DataFileListView, self).get_context_data(**kwargs)
+
+        data_file_set_tags = {}
+        for tag in DataFile.tags.all():
+            data_file_set_tags[tag.id] = tag.name
+
+        data_file_set_tags = collections.OrderedDict(
+            sorted(data_file_set_tags.items(), key=operator.itemgetter(1)))
+
+        context['data_file_set_tags'] = data_file_set_tags
+        context['pagination'] = 10
+        context['searchable'] = True
+        context['max_words'] = 40
+        context['word_buffer'] = 10
+        return context
 
 
 class DataFileSetDetailView(DetailView):
