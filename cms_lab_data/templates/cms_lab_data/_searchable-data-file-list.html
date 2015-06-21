@@ -60,7 +60,7 @@
     {% endfor %}
   </ul>
 
-  {% if pagination < data_file_set.count %}
+  {% if pagination > 0 and data_file_set.count > pagination %}
     <div class="text-center">
       <ul class="pagination"></ul>
     </div>
@@ -74,7 +74,7 @@
 {% addtoblock "js" %}
   <script src="{% static 'cms_lab_data/js/list.min.js' %}"></script>
 
-  {% if pagination %}
+  {% if pagination > 0 and data_file_set.count > pagination %}
     <script src="{% static 'cms_lab_data/js/list.pagination.min.js' %}"></script>
   {% endif %}
 
@@ -87,7 +87,7 @@
     var options = {
       valueNames: [ 'name', 'filename', 'description', 'tags' ],
 
-      {% if pagination %}
+      {% if pagination > 0 and data_file_set.count > pagination %}
         page: {{ pagination }},
         plugins: [
           ListPagination({})
