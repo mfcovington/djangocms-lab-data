@@ -19,7 +19,7 @@
       <li>
         <p>
           <strong>
-            <a class="hide-on-mobile name" href="{{ data_file.file.url }}" target="_blank">
+            <a class="hide-on-mobile name" href="{% url 'cms_lab_data:data_file_detail' data_file.slug %}">
               {{ data_file.name }}
             </a>
             <a class="show-on-mobile name" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
@@ -29,7 +29,7 @@
 
           <span class="hide-on-mobile file-name-size">
             [&nbsp;<em class="filename">{{ data_file.file.original_filename }},
-            {{ data_file.file_size_fmt }}</em>&nbsp;]
+            {{ data_file.file_size_fmt }}</em>&nbsp;<a class="hide-on-mobile name" href="{{ data_file.file.url }}" target="_blank"><span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span></a>&nbsp;]
           </span>
 
           {% if data_file.description %}
