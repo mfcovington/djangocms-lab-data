@@ -54,7 +54,7 @@
     {% endfor %}
   </ul>
 
-  {% if pagination %}
+  {% if pagination < data_file_set.count %}
     <div class="text-center">
       <ul class="pagination"></ul>
     </div>
