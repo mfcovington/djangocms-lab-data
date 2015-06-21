@@ -24,8 +24,9 @@ class CMSDataFileSetPlugin(CMSPluginBase):
             sorted(data_file_set_tags.items(), key=operator.itemgetter(1)))
 
         context.update({
-            'instance': instance,
+            'data_file_set': instance.data_file_set,
             'data_file_set_tags': data_file_set_tags,
+            'unique_id': 's{}i{}'.format(instance.data_file_set.id, instance.id),
         })
 
         menu = context['request'].toolbar.get_or_create_menu(

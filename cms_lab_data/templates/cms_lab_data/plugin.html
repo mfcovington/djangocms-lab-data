@@ -3,22 +3,24 @@
 
 {% block content %}
 
+  {% with list_var='listVar'|add:unique_id list_id='search-list-'|add:unique_id search_id='search-'|add:unique_id filter_id='filter-'|add:unique_id search_filter_id='search-filter-'|add:unique_id label=data_file_set.label pagination=data_file_set.pagination searchable=data_file_set.searchable max_words=data_file_set.max_words_file_description word_buffer=data_file_set.word_buffer_file_description %}
+
   {% addtoblock "css" %}
-    {% if instance.data_file_set.searchable %}
+    {% if searchable %}
       <link href="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/css/select2.min.css" rel="stylesheet" />
     {% endif %}
     <link rel="stylesheet" type="text/css" href="{% static 'cms_lab_data/css/app.css' %}">
   {% endaddtoblock %}
 
-  <div id="data-list-dfs{{ instance.data_file_set.id }}-i{{ instance.id }}">
-    {% if instance.data_file_set.searchable %}
-      {% include "cms_lab_data/_header-with-search-filter.html" with data_file_set=instance.data_file_set %}
+  <div id="{{ list_id }}">
+    {% if searchable %}
+      {% include "cms_lab_data/_header-with-search-filter.html" %}
     {% else %}
-      <h4>{{ instance.data_file_set.label }}</h4>
+      <h4>{{ data_file_set.label }}</h4>
     {% endif %}
 
     <ul class="list tidy-list">
-      {% for data_file in instance.data_file_set.data_files.all %}
+      {% for data_file in data_file_set.data_files.all %}
         <li>
           <p>
             <strong>
@@ -37,7 +39,6 @@
 
             {% if data_file.description %}
               <div class="hide-on-mobile description">
-                {% with max_words=instance.data_file_set.max_words_file_description word_buffer=instance.data_file_set.word_buffer_file_description %}
                   {% if data_file.description|wordcount > max_words|add:word_buffer %}
                     {{ data_file.description|linebreaks|truncatewords:max_words }}
                     <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
@@ -46,12 +47,11 @@
                   {% else %}
                     {{ data_file.description|linebreaks }}
                   {% endif %}
-                {% endwith %}
               </div>
             {% endif %}
           </p>
 
-          {% if instance.data_file_set.searchable %}
+          {% if searchable %}
             <!-- Hidden search/filter fields -->
             <p class="tags" style="display: none;">{% for tag in data_file.tags.all %}{{ tag.id }} {% endfor %}</p>
           {% endif %}
@@ -59,25 +59,25 @@
       {% endfor %}
     </ul>
 
-    {% if instance.data_file_set.pagination %}
+    {% if pagination %}
       <div class="text-center">
         <ul class="pagination"></ul>
       </div>
     {% endif %}
   </div>
 
-  {% for data_file in instance.data_file_set.data_files.all %}
+  {% for data_file in data_file_set.data_files.all %}
     {% include "cms_lab_data/_modal.html" %}
   {% endfor %}
 
   {% addtoblock "js" %}
     <script src="{% static 'cms_lab_data/js/list.min.js' %}"></script>
 
-    {% if instance.data_file_set.pagination %}
+    {% if pagination %}
       <script src="{% static 'cms_lab_data/js/list.pagination.min.js' %}"></script>
     {% endif %}
 
-    {% if instance.data_file_set.searchable %}
+    {% if searchable %}
       <script src="//cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.min.js"></script>
       <script src="{% static 'cms_lab_data/js/search-filter-data.js' %}"></script>
     {% endif %}
@@ -86,29 +86,31 @@
       var options = {
         valueNames: [ 'name', 'filename', 'description', 'tags' ],
 
-        {% if instance.data_file_set.pagination %}
-          page: {{ instance.data_file_set.pagination }},
+        {% if pagination %}
+          page: {{ pagination }},
           plugins: [
             ListPagination({})
           ],
         {% endif %}
 
       };
-      var dataListDfs{{ instance.data_file_set.id}}I{{ instance.id }} = new List('data-list-dfs{{ instance.data_file_set.id }}-i{{ instance.id }}', options);
+      var {{ list_var }} = new List("{{ list_id }}", options);
 
-      $( "#data-tags-select-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}" ).change(function() {
-        filterByTags(dataListDfs{{ instance.data_file_set.id}}I{{ instance.id }}, "data-tags-select-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}");
+      $( "#{{ filter_id }}" ).change(function() {
+        filterByTags({{ list_var }}, "{{ filter_id }}");
       });
 
-      $( "#data-search-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}" ).keyup(function() {
-        filterByTags(dataListDfs{{ instance.data_file_set.id}}I{{ instance.id }}, "data-tags-select-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}");
+      $( "#{{ search_id }}" ).keyup(function() {
+        filterByTags({{ list_var }}, "{{ filter_id }}");
       });
 
-      $("#data-tags-select-dfs{{ instance.data_file_set.id}}-i{{ instance.id }}").select2({
+      $("#{{ filter_id }}").select2({
           placeholder: "Filter Keywords",
       });
     </script>
 
   {% endaddtoblock %}
+
+  {% endwith %}
 
 {% endblock content %}
