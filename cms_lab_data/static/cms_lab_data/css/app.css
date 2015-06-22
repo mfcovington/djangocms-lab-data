@@ -8,7 +8,7 @@
 .no-word-wrap {
   white-space: nowrap;
 }
-.description {
+.description-indent {
   padding-left: 20px;
 }
 .file-name-size {

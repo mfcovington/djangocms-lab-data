@@ -39,14 +39,14 @@
           </span>
 
           {% if data_file.description %}
-            <div class="hide-on-mobile description">
+            <div class="hide-on-mobile description-indent">
                 {% if data_file.description|wordcount > max_words|add:word_buffer %}
-                  {{ data_file.description|linebreaks|truncatewords:max_words }}
+                  <span class="description">{{ data_file.description|linebreaksbr|truncatewords:max_words }}</span>
                   <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   </a>
                 {% else %}
-                  {{ data_file.description|linebreaks }}
+                  <span class="description">{{ data_file.description|linebreaksbr }}</span>
                 {% endif %}
             </div>
           {% endif %}
