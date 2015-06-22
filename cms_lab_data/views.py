@@ -57,3 +57,16 @@ class DataFileSetDetailView(DetailView):
 class DataFileSetListView(ListView):
 
     model = DataFileSet
+
+    def get_context_data(self, **kwargs):
+        data_file_list = self.object_list
+
+        context = super(DataFileSetListView, self).get_context_data(**kwargs)
+        context['data_file_set'] = data_file_list
+        context['data_file_set_tags'] = get_data_file_list_tags(data_file_list)
+        context['label'] = 'Data File Sets'
+        context['pagination'] = 10
+        context['searchable'] = True
+        context['max_words'] = 40
+        context['word_buffer'] = 10
+        return context
