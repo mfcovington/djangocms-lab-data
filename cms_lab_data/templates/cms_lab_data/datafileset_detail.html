@@ -29,6 +29,9 @@
       </p>
     {% endif %}
 
+    <hr>
+    {% include 'cms_lab_data/_searchable-data-file-list.html' with list_var='listVar'|add:'Main' list_id='search-list-'|add:'main' search_id='search-'|add:'main' filter_id='filter-'|add:'main' search_filter_id='search-filter-'|add:'main' %}
+
   </div>
 
 {% endblock content %}
