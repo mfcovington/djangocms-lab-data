@@ -16,3 +16,18 @@
     </ul>
   </p>
 {% endif %}
+
+{% if data_file.datafileset_set.all.count > 0 %}
+  <p>
+    <strong>Data File Sets:</strong>
+    <ul class="tag-list">
+      {% for datafileset in data_file.datafileset_set.all %}
+        <li class="tag-list-item">
+          <a href="{% url 'cms_lab_data:data_file_set_detail' datafileset.slug %}" class="label label-info">
+            {{ datafileset.name }}
+          </a>
+        </li>
+      {% endfor %}
+    </ul>
+  </p>
+{% endif %}
