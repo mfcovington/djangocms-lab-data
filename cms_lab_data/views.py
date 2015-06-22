@@ -34,7 +34,9 @@ class DataFileListView(ListView):
         data_file_set_tags = collections.OrderedDict(
             sorted(data_file_set_tags.items(), key=operator.itemgetter(1)))
 
+        context['data_file_set'] = DataFile.objects.all()
         context['data_file_set_tags'] = data_file_set_tags
+        context['label'] = 'Data Files'
         context['pagination'] = 10
         context['searchable'] = True
         context['max_words'] = 40
