@@ -4,7 +4,7 @@
 {% block content %}
 
   <div class="container-fluid">
-    {% include 'cms_lab_data/_searchable-data-file-list.html' with list_var='listVar'|add:'Main' list_id='search-list-'|add:'main' search_id='search-'|add:'main' filter_id='filter-'|add:'main' search_filter_id='search-filter-'|add:'main' label='Data Files' %}
+    {% include 'cms_lab_data/_searchable-data-file-set-list.html' with files_or_sets='files' list_var='listVar'|add:'Main' list_id='search-list-'|add:'main' search_id='search-'|add:'main' filter_id='filter-'|add:'main' search_filter_id='search-filter-'|add:'main' label='Data Files' %}
   </div>
 
 {% endblock content %}

@@ -19,8 +19,16 @@
       <li>
         <p>
           <strong>
-            <a class="hide-on-mobile name" href="{% url 'cms_lab_data:data_file_set_detail' data_file.slug %}">
-            {# <a class="hide-on-mobile name" href="{% url 'cms_lab_data:data_file_detail' data_file.slug %}"> #}
+            <a class="hide-on-mobile name" href="
+              {% if files_or_sets == 'files' %}
+                {% url 'cms_lab_data:data_file_detail' data_file.slug %}
+              {% elif files_or_sets == 'sets' %}
+                {% url 'cms_lab_data:data_file_set_detail' data_file.slug %}
+              {% else %}
+                {# ADD WARNING HERE #}
+              {% endif %}
+            ">
+
               {{ data_file.name }}
             </a>
             <a class="show-on-mobile name" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
@@ -28,20 +36,25 @@
             </a>
           </strong>
 
-          <span class="hide-on-mobile file-name-size">
-            [&nbsp;{{ data_file.data_files.count }} data file{{ data_file.data_files.count|pluralize }}&nbsp;]
+          {% if files_or_sets == 'files' %}
+            <span class="hide-on-mobile file-name-size">
+              [&nbsp;<em class="filename break-word-wrap">{{ data_file.file.original_filename }},</em>
+              <span class="no-word-wrap">
+                <em>{{ data_file.file_size_fmt }}</em>
+                <a class="hide-on-mobile name" href="{{ data_file.file.url }}" target="_blank">
+                  <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
+                </a>
+                ]
+              </span>
             </span>
-          </span>
-          {# <span class="hide-on-mobile file-name-size"> #}
-            {# [&nbsp;<em class="filename break-word-wrap">{{ data_file.file.original_filename }},</em> #}
-            {# <span class="no-word-wrap"> #}
-              {# <em>{{ data_file.file_size_fmt }}</em> #}
-              {# <a class="hide-on-mobile name" href="{{ data_file.file.url }}" target="_blank"> #}
-                {# <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span> #}
-              {# </a> #}
-              {# ] #}
-            {# </span> #}
-          {# </span> #}
+          {% elif files_or_sets == 'sets' %}
+            <span class="hide-on-mobile file-name-size">
+              [&nbsp;{{ data_file.data_files.count }} data file{{ data_file.data_files.count|pluralize }}&nbsp;]
+              </span>
+            </span>
+          {% else %}
+            {# ADD WARNING HERE #}
+          {% endif %}
 
           {% if data_file.description %}
             <div class="hide-on-mobile description-indent">
