@@ -1,9 +1,7 @@
-import collections
-import operator
-
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
+from .helpers import get_data_file_list_tags
 from .models import DataFile, DataFileSet
 
 def data_view(request):
@@ -25,17 +23,11 @@ class DataFileListView(ListView):
 
 
     def get_context_data(self, **kwargs):
+        data_file_list = self.object_list
+
         context = super(DataFileListView, self).get_context_data(**kwargs)
-
-        data_file_set_tags = {}
-        for tag in DataFile.tags.all():
-            data_file_set_tags[tag.id] = tag.name
-
-        data_file_set_tags = collections.OrderedDict(
-            sorted(data_file_set_tags.items(), key=operator.itemgetter(1)))
-
-        context['data_file_set'] = DataFile.objects.all()
-        context['data_file_set_tags'] = data_file_set_tags
+        context['data_file_set'] = data_file_list
+        context['data_file_set_tags'] = get_data_file_list_tags(data_file_list)
         context['label'] = 'Data Files'
         context['pagination'] = 10
         context['searchable'] = True
@@ -49,20 +41,11 @@ class DataFileSetDetailView(DetailView):
     model = DataFileSet
 
     def get_context_data(self, **kwargs):
+        data_file_list = self.object.data_files.all()
+
         context = super(DataFileSetDetailView, self).get_context_data(**kwargs)
-
-        data_file_set_tags = {}
-        data_file_set = self.object.data_files.all()
-        for data_file in data_file_set:
-            for tag in data_file.tags.all():
-                data_file_set_tags[tag.id] = tag.name
-
-        data_file_set_tags = collections.OrderedDict(
-            sorted(data_file_set_tags.items(), key=operator.itemgetter(1)))
-
-
-        context['data_file_set'] = data_file_set
-        context['data_file_set_tags'] = data_file_set_tags
+        context['data_file_set'] = data_file_list
+        context['data_file_set_tags'] = get_data_file_list_tags(data_file_list)
         context['label'] = self.object.label
         context['pagination'] = 10
         context['searchable'] = True
