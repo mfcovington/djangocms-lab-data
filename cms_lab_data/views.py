@@ -26,13 +26,15 @@ class DataFileListView(ListView):
         data_file_list = self.object_list
 
         context = super(DataFileListView, self).get_context_data(**kwargs)
-        context['data_file_set'] = data_file_list
-        context['data_file_set_tags'] = get_data_file_list_tags(data_file_list)
-        context['label'] = 'Data Files'
-        context['pagination'] = 10
-        context['searchable'] = True
-        context['max_words'] = 40
-        context['word_buffer'] = 10
+        context.update({
+            'data_file_set': data_file_list,
+            'data_file_set_tags': get_data_file_list_tags(data_file_list),
+            'label': 'Data Files',
+            'pagination': 10,
+            'searchable': True,
+            'max_words': 40,
+            'word_buffer': 10,
+        })
         return context
 
 
@@ -44,13 +46,15 @@ class DataFileSetDetailView(DetailView):
         data_file_list = self.object.data_files.all()
 
         context = super(DataFileSetDetailView, self).get_context_data(**kwargs)
-        context['data_file_set'] = data_file_list
-        context['data_file_set_tags'] = get_data_file_list_tags(data_file_list)
-        context['label'] = self.object.label
-        context['pagination'] = 10
-        context['searchable'] = True
-        context['max_words'] = 40
-        context['word_buffer'] = 10
+        context.update({
+            'data_file_set': data_file_list,
+            'data_file_set_tags': get_data_file_list_tags(data_file_list),
+            'label': self.object.label,
+            'pagination': 10,
+            'searchable': True,
+            'max_words': 40,
+            'word_buffer': 10,
+        })
         return context
 
 
@@ -62,12 +66,14 @@ class DataFileSetListView(ListView):
         data_file_list = self.object_list
 
         context = super(DataFileSetListView, self).get_context_data(**kwargs)
-        context['is_data_file_set_list'] = True
-        context['data_file_set'] = data_file_list
-        context['data_file_set_tags'] = get_data_file_list_tags(data_file_list)
-        context['label'] = 'Data File Sets'
-        context['pagination'] = 10
-        context['searchable'] = True
-        context['max_words'] = 40
-        context['word_buffer'] = 10
+        context.update({
+            'is_data_file_set_list': True,
+            'data_file_set': data_file_list,
+            'data_file_set_tags': get_data_file_list_tags(data_file_list),
+            'label': 'Data File Sets',
+            'pagination': 10,
+            'searchable': True,
+            'max_words': 40,
+            'word_buffer': 10,
+        })
         return context
