@@ -62,6 +62,7 @@ class DataFileSetListView(ListView):
         data_file_list = self.object_list
 
         context = super(DataFileSetListView, self).get_context_data(**kwargs)
+        context['is_data_file_set_list'] = True
         context['data_file_set'] = data_file_list
         context['data_file_set_tags'] = get_data_file_list_tags(data_file_list)
         context['label'] = 'Data File Sets'

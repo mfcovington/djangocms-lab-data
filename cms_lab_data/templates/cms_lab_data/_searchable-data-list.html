@@ -20,12 +20,10 @@
         <p>
           <strong>
             <a class="hide-on-mobile name" href="
-              {% if files_or_sets == 'files' %}
-                {% url 'cms_lab_data:data_file_detail' data_file.slug %}
-              {% elif files_or_sets == 'sets' %}
+              {% if is_data_file_set_list %}
                 {% url 'cms_lab_data:data_file_set_detail' data_file.slug %}
               {% else %}
-                {# ADD WARNING HERE #}
+                {% url 'cms_lab_data:data_file_detail' data_file.slug %}
               {% endif %}
             ">
 
@@ -36,7 +34,12 @@
             </a>
           </strong>
 
-          {% if files_or_sets == 'files' %}
+          {% if is_data_file_set_list %}
+            <span class="hide-on-mobile file-name-size">
+              [&nbsp;{{ data_file.data_files.count }} data file{{ data_file.data_files.count|pluralize }}&nbsp;]
+              </span>
+            </span>
+          {% else %}
             <span class="hide-on-mobile file-name-size">
               [&nbsp;<em class="filename break-word-wrap">{{ data_file.file.original_filename }},</em>
               <span class="no-word-wrap">
@@ -47,13 +50,6 @@
                 ]
               </span>
             </span>
-          {% elif files_or_sets == 'sets' %}
-            <span class="hide-on-mobile file-name-size">
-              [&nbsp;{{ data_file.data_files.count }} data file{{ data_file.data_files.count|pluralize }}&nbsp;]
-              </span>
-            </span>
-          {% else %}
-            {# ADD WARNING HERE #}
           {% endif %}
 
           {% if data_file.description %}

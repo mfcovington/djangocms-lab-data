@@ -1,7 +1,5 @@
-{% if files_or_sets == 'files' %}
-  <a href="{{ data_file.file.url }}" class="btn btn-success" target="_blank">Download File</a>
-{% elif files_or_sets == 'sets' %}
+{% if is_data_file_set_list %}
   <a href="{% url 'cms_lab_data:data_file_set_detail' data_file.slug %}" class="btn btn-info">Go to Data File Set</a>
 {% else %}
-  {# ADD WARNING HERE #}
+  <a href="{{ data_file.file.url }}" class="btn btn-success" target="_blank">Download File</a>
 {% endif %}

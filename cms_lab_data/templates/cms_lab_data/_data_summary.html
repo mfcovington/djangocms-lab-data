@@ -1,10 +1,8 @@
-{% if files_or_sets == 'files' %}
-  <p class="break-word-wrap"><strong>File:</strong> {{ data_file.file.original_filename }}</p>
-  <p><strong>Size:</strong> {{ data_file.file_size_fmt }}</p>
-{% elif files_or_sets == 'sets' %}
+{% if is_data_file_set_list %}
   <p><strong>Number of Files:</strong> {{ data_file.data_files.count }}</p>
 {% else %}
-  {# ADD WARNING HERE #}
+  <p class="break-word-wrap"><strong>File:</strong> {{ data_file.file.original_filename }}</p>
+  <p><strong>Size:</strong> {{ data_file.file_size_fmt }}</p>
 {% endif %}
 
 {% if data_file.description %}
@@ -23,7 +21,7 @@
   </p>
 {% endif %}
 
-{% if files_or_sets == 'files' %}
+{% if not is_data_file_set_list %}
   {% if data_file.datafileset_set.all.count > 0 %}
     <p>
       <strong>Data File Sets:</strong>
