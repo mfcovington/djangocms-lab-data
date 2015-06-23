@@ -56,6 +56,16 @@ CMS Lab Data is a Django app for organizing data files and sets of data files wi
         THUMBNAIL_SUBDIR = 'versions'
         ```
 
+- Run `python manage.py makemigrations cms_lab_data` to create the `cms_lab_data` migrations.
+
+- Run `python manage.py migrate` to create the `cms_lab_data` models.
+
+- Start the development server (`python manage.py runserver`) and visit http://127.0.0.1:8000/
+
+- Create a CMS page and insert the `Data Set Plugin` into a placeholder field.
+
+- Create a CMS page and attach the `Data App` under `Advanced Settings` for the page.
+
 - To access `cms_lab_data` pages without using a django CMS AppHook, include URL configurations for `cms_lab_data` and media (if `DEBUG == True`) in your project's `urls.py` file:
 
     ```python
@@ -74,13 +84,5 @@ CMS Lab Data is a Django app for organizing data files and sets of data files wi
                 {'document_root': settings.MEDIA_ROOT})
         ]
     ```
-
-- Run `python manage.py makemigrations cms_lab_data` to create the `cms_lab_data` migrations.
-
-- Run `python manage.py migrate` to create the `cms_lab_data` models.
-
-- Start the development server (`python manage.py runserver`) and visit http://127.0.0.1:8000/
-
-- Create a CMS page and insert the `Data Set Plugin` into a placeholder field.
 
 *Version 0.0.0*
