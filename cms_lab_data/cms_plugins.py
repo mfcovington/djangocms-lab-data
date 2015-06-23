@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
+from .helpers import get_data_file_list_tags
 from .models import DataFileSetPlugin
 
 class CMSDataFileSetPlugin(CMSPluginBase):
@@ -15,18 +16,18 @@ class CMSDataFileSetPlugin(CMSPluginBase):
     render_template = 'cms_lab_data/plugin.html'
 
     def render(self, context, instance, placeholder):
-        data_file_set_tags = {}
-        data_file_set = instance.data_file_set.data_files.all()
-        for data_file in data_file_set:
-            for tag in data_file.tags.all():
-                data_file_set_tags[tag.id] = tag.name
-        data_file_set_tags = collections.OrderedDict(
-            sorted(data_file_set_tags.items(), key=operator.itemgetter(1)))
+        data_file_set = instance.data_file_set
+        data_file_list = data_file_set.data_files.all()
 
         context.update({
-            'data_file_set': instance.data_file_set,
-            'data_file_set_tags': data_file_set_tags,
-            'unique_id': 's{}i{}'.format(instance.data_file_set.id, instance.id),
+            'data_file_set': data_file_list,
+            'data_file_set_tags': get_data_file_list_tags(data_file_list),
+            'unique_id': 's{}i{}'.format(data_file_set.id, instance.id),
+            'label': data_file_set.label,
+            'pagination': data_file_set.pagination,
+            'searchable': data_file_set.searchable,
+            'max_words': data_file_set.max_words_file_description,
+            'word_buffer': data_file_set.word_buffer_file_description,
         })
 
         menu = context['request'].toolbar.get_or_create_menu(
