@@ -16,7 +16,7 @@
 
   <div class="col-xs-9 col-sm-5 col-sm-pull-1 filter-container">
     <select id="{{ filter_id }}" multiple="multiple" style="width: 100%;">
-      {% for id, tag in data_file_set_tags.items %}
+      {% for id, tag in data_list_tags.items %}
         <option value="{{ id }}">{{ tag }}</option>
       {% endfor %}
     </select>

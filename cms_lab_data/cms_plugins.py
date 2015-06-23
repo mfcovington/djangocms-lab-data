@@ -6,7 +6,7 @@ from django.core.urlresolvers import reverse
 from cms.plugin_base import CMSPluginBase
 from cms.plugin_pool import plugin_pool
 
-from .helpers import get_data_file_list_tags
+from .helpers import get_data_list_tags
 from .menus import base_data_menu
 from .models import DataFileSetPlugin
 
@@ -25,8 +25,8 @@ class CMSDataFileSetPlugin(CMSPluginBase):
             'data-menu', 'Data'))
 
         context.update({
-            'data_file_set': data_file_list,
-            'data_file_set_tags': get_data_file_list_tags(data_file_list),
+            'data_list': data_file_list,
+            'data_list_tags': get_data_list_tags(data_file_list),
             'unique_id': 's{}i{}'.format(data_file_set.id, instance.id),
             'label': data_file_set.label,
             'pagination': data_file_set.pagination,

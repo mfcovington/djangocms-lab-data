@@ -11,9 +11,9 @@
   <div class="container-fluid summary">
     <h1>{{ object.name }}</h1>
     <hr>
-    {% include "cms_lab_data/_data_summary.html" with data_file=object %}
+    {% include "cms_lab_data/_data_summary.html" with data_item=object %}
     <hr>
-    {% include "cms_lab_data/_data_btn.html" with data_file=object %}
+    {% include "cms_lab_data/_data_btn.html" with data_item=object %}
   </div>
 
 {% endblock content %}

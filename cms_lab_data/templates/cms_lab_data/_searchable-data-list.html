@@ -15,36 +15,36 @@
   {% endif %}
 
   <ul class="list tidy-list">
-    {% for data_file in data_file_set %}
+    {% for data_item in data_list %}
       <li>
         <p>
           <strong>
             <a class="hide-on-mobile name" href="
               {% if is_data_file_set_list %}
-                {% url 'cms_lab_data:data_file_set_detail' data_file.slug %}
+                {% url 'cms_lab_data:data_file_set_detail' data_item.slug %}
               {% else %}
-                {% url 'cms_lab_data:data_file_detail' data_file.slug %}
+                {% url 'cms_lab_data:data_file_detail' data_item.slug %}
               {% endif %}
             ">
 
-              {{ data_file.name }}
+              {{ data_item.name }}
             </a>
-            <a class="show-on-mobile name" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
-              {{ data_file.name }}
+            <a class="show-on-mobile name" href="#" data-toggle="modal" data-target="#modal-data-{{ data_item.id }}">
+              {{ data_item.name }}
             </a>
           </strong>
 
           {% if is_data_file_set_list %}
             <span class="hide-on-mobile file-name-size">
-              [&nbsp;{{ data_file.data_files.count }} data file{{ data_file.data_files.count|pluralize }}&nbsp;]
+              [&nbsp;{{ data_item.data_files.count }} data file{{ data_item.data_files.count|pluralize }}&nbsp;]
               </span>
             </span>
           {% else %}
             <span class="hide-on-mobile file-name-size">
-              [&nbsp;<em class="filename break-word-wrap">{{ data_file.file.original_filename }},</em>
+              [&nbsp;<em class="filename break-word-wrap">{{ data_item.file.original_filename }},</em>
               <span class="no-word-wrap">
-                <em>{{ data_file.file_size_fmt }}</em>
-                <a class="hide-on-mobile name" href="{{ data_file.file.url }}" target="_blank">
+                <em>{{ data_item.file_size_fmt }}</em>
+                <a class="hide-on-mobile name" href="{{ data_item.file.url }}" target="_blank">
                   <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
                 </a>
                 ]
@@ -52,15 +52,15 @@
             </span>
           {% endif %}
 
-          {% if data_file.description %}
+          {% if data_item.description %}
             <div class="hide-on-mobile description-indent">
-                {% if data_file.description|wordcount > max_words|add:word_buffer %}
-                  <span class="description">{{ data_file.description|linebreaksbr|truncatewords:max_words }}</span>
-                  <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_file.id }}">
+                {% if data_item.description|wordcount > max_words|add:word_buffer %}
+                  <span class="description">{{ data_item.description|linebreaksbr|truncatewords:max_words }}</span>
+                  <a class="name btn btn-xs btn-default" href="#" data-toggle="modal" data-target="#modal-data-{{ data_item.id }}">
                     <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
                   </a>
                 {% else %}
-                  <span class="description">{{ data_file.description|linebreaksbr }}</span>
+                  <span class="description">{{ data_item.description|linebreaksbr }}</span>
                 {% endif %}
             </div>
           {% endif %}
@@ -68,27 +68,27 @@
 
         {% if searchable %}
           <!-- Hidden search/filter fields -->
-          <p class="tags" style="display: none;">{% for tag in data_file.tags.all %}{{ tag.id }} {% endfor %}</p>
+          <p class="tags" style="display: none;">{% for tag in data_item.tags.all %}{{ tag.id }} {% endfor %}</p>
         {% endif %}
       </li>
     {% endfor %}
   </ul>
 
-  {% if pagination > 0 and data_file_set.count > pagination %}
+  {% if pagination > 0 and data_list.count > pagination %}
     <div class="text-center">
       <ul class="pagination"></ul>
     </div>
   {% endif %}
 </div>
 
-{% for data_file in data_file_set %}
+{% for data_item in data_list %}
   {% include "cms_lab_data/_modal.html" %}
 {% endfor %}
 
 {% addtoblock "js" %}
   <script src="{% static 'cms_lab_data/js/list.min.js' %}"></script>
 
-  {% if pagination > 0 and data_file_set.count > pagination %}
+  {% if pagination > 0 and data_list.count > pagination %}
     <script src="{% static 'cms_lab_data/js/list.pagination.min.js' %}"></script>
   {% endif %}
 
@@ -101,7 +101,7 @@
     var options = {
       valueNames: [ 'name', 'filename', 'description', 'tags' ],
 
-      {% if pagination > 0 and data_file_set.count > pagination %}
+      {% if pagination > 0 and data_list.count > pagination %}
         page: {{ pagination }},
         plugins: [
           ListPagination({})

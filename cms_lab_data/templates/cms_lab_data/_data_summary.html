@@ -1,20 +1,20 @@
 {% if is_data_file_set_list %}
-  <p><strong>Number of Files:</strong> {{ data_file.data_files.count }}</p>
+  <p><strong>Number of Files:</strong> {{ data_item.data_files.count }}</p>
 {% else %}
-  <p class="break-word-wrap"><strong>File:</strong> {{ data_file.file.original_filename }}</p>
-  <p><strong>Size:</strong> {{ data_file.file_size_fmt }}</p>
+  <p class="break-word-wrap"><strong>File:</strong> {{ data_item.file.original_filename }}</p>
+  <p><strong>Size:</strong> {{ data_item.file_size_fmt }}</p>
 {% endif %}
 
-{% if data_file.description %}
+{% if data_item.description %}
   <p><strong>Description:</strong></p>
-  <div class="description">{{ data_file.description|linebreaks }}</div>
+  <div class="description">{{ data_item.description|linebreaks }}</div>
 {% endif %}
 
-{% if data_file.tags.count > 0 %}
+{% if data_item.tags.count > 0 %}
   <p>
     <strong>Tags:</strong>
     <ul class="tag-list">
-      {% for tag in data_file.tags.all|dictsort:"name" %}
+      {% for tag in data_item.tags.all|dictsort:"name" %}
         <li class="tag-list-item"><span class="label label-primary">{{ tag.name }}</span></li>
       {% endfor %}
     </ul>
@@ -22,11 +22,11 @@
 {% endif %}
 
 {% if not is_data_file_set_list %}
-  {% if data_file.datafileset_set.all.count > 0 %}
+  {% if data_item.datafileset_set.all.count > 0 %}
     <p>
       <strong>Data File Sets:</strong>
       <ul class="tag-list">
-        {% for datafileset in data_file.datafileset_set.all %}
+        {% for datafileset in data_item.datafileset_set.all %}
           <li class="tag-list-item">
             <a href="{% url 'cms_lab_data:data_file_set_detail' datafileset.slug %}" class="label label-info">
               {{ datafileset.name }}
