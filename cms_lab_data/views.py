@@ -23,6 +23,11 @@ class DataFileDetailView(DetailView):
 
     model = DataFile
 
+    def get_context_data(self, **kwargs):
+        context = super(DataFileDetailView, self).get_context_data(**kwargs)
+        context['data_item'] = self.object
+        return context
+
     def render_to_response(self, context, **response_kwargs):
         if self.request.toolbar:
             menu = base_data_menu(

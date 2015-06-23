@@ -9,11 +9,11 @@
   {% endaddtoblock %}
 
   <div class="container-fluid summary">
-    <h1>{{ object.name }}</h1>
+    <h1>{{ data_item.name }}</h1>
     <hr>
-    {% include "cms_lab_data/_data_summary.html" with data_item=object %}
+    {% include "cms_lab_data/_data_summary.html" %}
     <hr>
-    {% include "cms_lab_data/_data_btn.html" with data_item=object %}
+    {% include "cms_lab_data/_data_btn.html" %}
   </div>
 
 {% endblock content %}
