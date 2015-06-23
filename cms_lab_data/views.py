@@ -8,7 +8,9 @@ from .models import DataFile, DataFileSet
 
 def data_view(request):
     if request.toolbar:
-        menu = base_data_menu(request, 'data-menu', 'Data')
+        menu = base_data_menu(
+            request.toolbar.get_or_create_menu('data-menu', 'Data')
+        )
 
     context = {
         'data_file_count': DataFile.objects.count(),
@@ -23,7 +25,9 @@ class DataFileDetailView(DetailView):
 
     def render_to_response(self, context, **response_kwargs):
         if self.request.toolbar:
-            menu = base_data_menu(self.request, 'data-menu', 'Data')
+            menu = base_data_menu(
+                self.request.toolbar.get_or_create_menu('data-menu', 'Data')
+            )
 
             url_change = reverse('admin:cms_lab_data_datafile_change', args=[self.object.id])
             url_delete = reverse('admin:cms_lab_data_datafile_delete', args=[self.object.id])
@@ -56,7 +60,9 @@ class DataFileListView(ListView):
 
     def render_to_response(self, context, **response_kwargs):
         if self.request.toolbar:
-            menu = base_data_menu(self.request, 'data-menu', 'Data')
+            menu = base_data_menu(
+                self.request.toolbar.get_or_create_menu('data-menu', 'Data')
+            )
 
         return super().render_to_response(context, **response_kwargs)
 
@@ -82,7 +88,9 @@ class DataFileSetDetailView(DetailView):
 
     def render_to_response(self, context, **response_kwargs):
         if self.request.toolbar:
-            menu = base_data_menu(self.request, 'data-menu', 'Data')
+            menu = base_data_menu(
+                self.request.toolbar.get_or_create_menu('data-menu', 'Data')
+            )
 
             url_change = reverse('admin:cms_lab_data_datafileset_change', args=[self.object.id])
             url_delete = reverse('admin:cms_lab_data_datafileset_delete', args=[self.object.id])
@@ -115,6 +123,8 @@ class DataFileSetListView(ListView):
 
     def render_to_response(self, context, **response_kwargs):
         if self.request.toolbar:
-            menu = base_data_menu(self.request, 'data-menu', 'Data')
+            menu = base_data_menu(
+                self.request.toolbar.get_or_create_menu('data-menu', 'Data')
+            )
 
         return super().render_to_response(context, **response_kwargs)

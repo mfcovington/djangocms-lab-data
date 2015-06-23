@@ -1,8 +1,6 @@
 from django.core.urlresolvers import reverse
 
-def base_data_menu(request, menu_id, menu_label):
-
-    menu = request.toolbar.get_or_create_menu(menu_id, menu_label)
+def base_data_menu(menu):
 
     url_change = reverse('admin:cms_lab_data_datafile_changelist')
     url_addnew = reverse('admin:cms_lab_data_datafile_add')
