@@ -24,7 +24,7 @@ class DataFileDetailView(DetailView):
     model = DataFile
 
     def get_context_data(self, **kwargs):
-        context = super(DataFileDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context['data_item'] = self.object
         return context
 
@@ -51,7 +51,7 @@ class DataFileListView(ListView):
     def get_context_data(self, **kwargs):
         data_list = self.object_list
 
-        context = super(DataFileListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context.update({
             'data_list': data_list,
             'data_list_tags': get_data_list_tags(data_list),
@@ -79,7 +79,7 @@ class DataFileSetDetailView(DetailView):
     def get_context_data(self, **kwargs):
         data_list = self.object.data_files.all()
 
-        context = super(DataFileSetDetailView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context.update({
             'data_list': data_list,
             'data_list_tags': get_data_list_tags(data_list),
@@ -113,7 +113,7 @@ class DataFileSetListView(ListView):
     def get_context_data(self, **kwargs):
         data_list = self.object_list
 
-        context = super(DataFileSetListView, self).get_context_data(**kwargs)
+        context = super().get_context_data(**kwargs)
         context.update({
             'is_data_file_set_list': True,
             'data_list': data_list,
