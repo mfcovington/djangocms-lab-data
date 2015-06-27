@@ -1,13 +1,13 @@
+{% if data_item.description %}
+  <p><strong>Description:</strong></p>
+  <div class="description">{{ data_item.description|linebreaks }}</div>
+{% endif %}
+
 {% if is_data_file_set_list %}
   <p><strong>Number of Files:</strong> {{ data_item.data_files.count }}</p>
 {% else %}
   <p class="break-word-wrap"><strong>File:</strong> {{ data_item.file.original_filename }}</p>
   <p><strong>Size:</strong> {{ data_item.file_size_fmt }}</p>
-{% endif %}
-
-{% if data_item.description %}
-  <p><strong>Description:</strong></p>
-  <div class="description">{{ data_item.description|linebreaks }}</div>
 {% endif %}
 
 {% if data_item.tags.count > 0 %}
