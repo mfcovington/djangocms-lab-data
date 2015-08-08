@@ -8,6 +8,7 @@
 {% else %}
   <p class="break-word-wrap"><strong>File:</strong> {{ data_item.file.original_filename }}</p>
   <p><strong>Size:</strong> {{ data_item.file_size_fmt }}</p>
+  <p><strong>SHA-1:</strong> {{ data_item.file.sha1 }}</p>
 {% endif %}
 
 {% if data_item.tags.count > 0 %}
