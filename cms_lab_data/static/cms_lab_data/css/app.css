@@ -74,6 +74,18 @@ span.select2-selection.select2-selection--multiple {
 }
 
 
+/*********/
+/* SHA-1 */
+/*********/
+
+.sha1 {
+  border-bottom: 1px dotted;
+}
+.tooltip-inner {
+  max-width: 100%;
+}
+
+
 /****************************************/
 /* Visibility on Different Screen Sizes */
 /****************************************/

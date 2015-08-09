@@ -40,7 +40,7 @@
             <span class="hide-on-mobile file-name-size">
               [&nbsp;<em class="filename break-word-wrap">{{ data_item.file.original_filename }},</em>
               <span class="no-word-wrap">
-                <em>{{ data_item.file_size_fmt }}</em>
+                <em class="sha1" data-toggle="tooltip" data-original-title="SHA-1: {{ data_item.file.sha1 }}">{{ data_item.file_size_fmt }}</em>
                 <a href="{{ data_item.file.url }}" target="_blank">
                   <span class="glyphicon glyphicon-download-alt" aria-hidden="true"></span>
                 </a>
@@ -119,6 +119,10 @@
     $("#{{ filter_id }}").select2({
         placeholder: "Filter Keywords",
     });
+
+    $(function () {
+      $('[data-toggle="tooltip"]').tooltip()
+    })
   </script>
 
 {% endaddtoblock %}
