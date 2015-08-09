@@ -25,10 +25,7 @@
               {% else %}
                 {% url 'cms_lab_data:data_file_detail' data_item.slug %}
               {% endif %}
-            ">
-
-              {{ data_item.name }}
-            </a>
+            ">{{ data_item.name }}</a>
             <a class="show-on-mobile name" href="#" data-toggle="modal" data-target="#modal-data-{{ data_item.id }}">
               {{ data_item.name }}
             </a>
