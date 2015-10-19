@@ -1,4 +1,4 @@
 include LICENSE
 include README.md
-recursive-include cms_lab_publications/static *
-recursive-include cms_lab_publications/templates *
+recursive-include cms_lab_data/static *
+recursive-include cms_lab_data/templates *
