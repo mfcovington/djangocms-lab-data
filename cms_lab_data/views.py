@@ -49,7 +49,7 @@ class DataFileListView(ListView):
 
 
     def get_context_data(self, **kwargs):
-        data_list = self.object_list
+        data_list = self.object_list.filter(is_published=True)
 
         context = super().get_context_data(**kwargs)
         context.update({
@@ -77,7 +77,7 @@ class DataFileSetDetailView(DetailView):
     model = DataFileSet
 
     def get_context_data(self, **kwargs):
-        data_list = self.object.data_files.all()
+        data_list = self.object.data_files.filter(is_published=True)
 
         context = super().get_context_data(**kwargs)
         context.update({
@@ -111,7 +111,7 @@ class DataFileSetListView(ListView):
     model = DataFileSet
 
     def get_context_data(self, **kwargs):
-        data_list = self.object_list
+        data_list = self.object_list.filter(is_published=True)
 
         context = super().get_context_data(**kwargs)
         context.update({
