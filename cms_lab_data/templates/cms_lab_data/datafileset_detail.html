@@ -8,27 +8,31 @@
     <link rel="stylesheet" type="text/css" href="{% static 'cms_lab_data/css/app.css' %}">
   {% endaddtoblock %}
 
-  <div class="jumbotron">
-    <h1>{{ object.name }}</h1>
+  <div class="container">
 
-    <p>{{ object.description|linebreaks }}</p>
+    <div class="jumbotron">
+      <h1>{{ object.name }}</h1>
 
-    <p><strong>Number of Files:</strong> {{ object.published_data_files.count }}</p>
+      <p>{{ object.description|linebreaks }}</p>
 
-    {% if object.tags.count > 0 %}
-      <p>
-        <strong>Tags:</strong>
-        <ul class="tag-list">
-          {% for tag in object.tags.all|dictsort:"name" %}
-            <li class="tag-list-item"><span class="label label-primary">{{ tag.name }}</span></li>
-          {% endfor %}
-        </ul>
-      </p>
-    {% endif %}
-  </div>
+      <p><strong>Number of Files:</strong> {{ object.published_data_files.count }}</p>
 
-  <div class="container-fluid">
-    {% include 'cms_lab_data/_searchable-data-list.html' with list_var='listVar'|add:'Main' list_id='search-list-'|add:'main' search_id='search-'|add:'main' filter_id='filter-'|add:'main' search_filter_id='search-filter-'|add:'main' %}
+      {% if object.tags.count > 0 %}
+        <p>
+          <strong>Tags:</strong>
+          <ul class="tag-list">
+            {% for tag in object.tags.all|dictsort:"name" %}
+              <li class="tag-list-item"><span class="label label-primary">{{ tag.name }}</span></li>
+            {% endfor %}
+          </ul>
+        </p>
+      {% endif %}
+    </div>
+
+    <div class="container-fluid">
+      {% include 'cms_lab_data/_searchable-data-list.html' with list_var='listVar'|add:'Main' list_id='search-list-'|add:'main' search_id='search-'|add:'main' filter_id='filter-'|add:'main' search_filter_id='search-filter-'|add:'main' %}
+    </div>
+
   </div>
 
 {% endblock content %}
