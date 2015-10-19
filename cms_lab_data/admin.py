@@ -22,6 +22,7 @@ class DataFileAdmin(TaggitCounter, admin.ModelAdmin):
             'slug',
             'file',
             'description',
+            'is_published',
         ],
     })
 
@@ -40,9 +41,11 @@ class DataFileAdmin(TaggitCounter, admin.ModelAdmin):
         'description',
         'number_of_data_file_sets',
         'taggit_counter',
+        'is_published',
     )
 
     list_filter = (
+        'is_published',
         TaggitListFilter,
     )
 
@@ -85,6 +88,7 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
             'label',
             'description',
             'image',
+            'is_published',
         ],
     })
 
@@ -127,9 +131,11 @@ class DataFileSetAdmin(TaggitCounter, admin.ModelAdmin):
         'word_buffer_file_description',
         'taggit_counter',
         'searchable',
+        'is_published',
     )
 
     list_filter = (
+        'is_published',
         TaggitListFilter,
     )
 

@@ -31,6 +31,11 @@ class DataFile(models.Model):
         help_text='Enter a description of this data file.',
     )
 
+    is_published = models.BooleanField('Published',
+        default=True,
+        help_text='Show data file on site?'
+    )
+
     tags = TaggableManager(
         blank=True,
         help_text='Add keyword tags that represent this data file.',
@@ -109,6 +114,11 @@ class DataFileSet(models.Model):
                   "if they are only slightly over the 'max words' cutoff.<br>" \
                   "For example, with 'max words' of 40 and a 'word buffer' of 10, " \
                   "descriptions longer than 50 words will be truncated to 40.",
+    )
+
+    is_published = models.BooleanField('Published',
+        default=True,
+        help_text='Show data file set on site?'
     )
 
     searchable = models.BooleanField('searchable?',
