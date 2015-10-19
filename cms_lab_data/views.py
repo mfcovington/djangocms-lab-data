@@ -1,4 +1,5 @@
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from django.shortcuts import render
 from django.views.generic import DetailView, ListView
 
@@ -24,6 +25,9 @@ class DataFileDetailView(DetailView):
     model = DataFile
 
     def get_context_data(self, **kwargs):
+        if not self.object.is_published:
+            raise Http404("Data file not published.")
+
         context = super().get_context_data(**kwargs)
         context['data_item'] = self.object
         return context
@@ -77,6 +81,9 @@ class DataFileSetDetailView(DetailView):
     model = DataFileSet
 
     def get_context_data(self, **kwargs):
+        if not self.object.is_published:
+            raise Http404("Data file set not published.")
+
         data_list = self.object.data_files.filter(is_published=True)
 
         context = super().get_context_data(**kwargs)
