@@ -14,8 +14,9 @@ def data_view(request):
         )
 
     context = {
-        'data_file_count': DataFile.objects.count(),
-        'data_file_set_count': DataFileSet.objects.count(),
+        'data_file_count': DataFile.objects.filter(is_published=True).count(),
+        'data_file_set_count': DataFileSet.objects.filter(
+            is_published=True).count(),
     }
     return render(request, 'cms_lab_data/data.html', context)
 

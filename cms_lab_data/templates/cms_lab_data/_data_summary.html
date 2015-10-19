@@ -4,7 +4,7 @@
 {% endif %}
 
 {% if is_data_file_set_list %}
-  <p><strong>Number of Files:</strong> {{ data_item.data_files.count }}</p>
+  <p><strong>Number of Files:</strong> {{ data_item.published_data_files.count }}</p>
 {% else %}
   <p class="break-word-wrap"><strong>File:</strong> {{ data_item.file.original_filename }}</p>
   <p><strong>Size:</strong> {{ data_item.file_size_fmt }}</p>

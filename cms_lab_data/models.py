@@ -131,6 +131,9 @@ class DataFileSet(models.Model):
         help_text='Add keyword tags that represent this data set.',
     )
 
+    def published_data_files(self):
+        return self.data_files.filter(is_published=True)
+
     def __str__(self):
         return self.name
 

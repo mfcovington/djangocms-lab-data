@@ -13,7 +13,7 @@
 
     <p>{{ object.description|linebreaks }}</p>
 
-    <p><strong>Number of Files:</strong> {{ object.data_files.count }}</p>
+    <p><strong>Number of Files:</strong> {{ object.published_data_files.count }}</p>
 
     {% if object.tags.count > 0 %}
       <p>
