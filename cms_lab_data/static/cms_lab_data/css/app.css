@@ -51,6 +51,19 @@
 }
 
 
+/**************/
+/* PAGINATION */
+/**************/
+
+.data-list {
+  margin-bottom: 30px;
+}
+
+.data-list .pagination {
+  margin-bottom: 0px;
+}
+
+
 /*****************/
 /* Search/Filter */
 /*****************/

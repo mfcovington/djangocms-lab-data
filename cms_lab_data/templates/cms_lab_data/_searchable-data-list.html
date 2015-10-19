@@ -7,7 +7,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'cms_lab_data/css/app.css' %}">
 {% endaddtoblock %}
 
-<div id="{{ list_id }}">
+<div id="{{ list_id }}" class="data-list">
   {% if data_list.count > 0 %}
     {% if searchable %}
       {% include "cms_lab_data/_header-with-search-filter.html" %}
