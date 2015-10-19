@@ -8,10 +8,12 @@
 {% endaddtoblock %}
 
 <div id="{{ list_id }}">
-  {% if searchable %}
-    {% include "cms_lab_data/_header-with-search-filter.html" %}
-  {% else %}
-    <h4>{{ label }}</h4>
+  {% if data_list.count > 0 %}
+    {% if searchable %}
+      {% include "cms_lab_data/_header-with-search-filter.html" %}
+    {% else %}
+      <h4>{{ label }}</h4>
+    {% endif %}
   {% endif %}
 
   <ul class="list tidy-list">
