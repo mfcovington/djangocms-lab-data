@@ -121,7 +121,7 @@ class DataFileSet(models.Model):
         help_text='Show data file set on site?'
     )
 
-    searchable = models.BooleanField('searchable?',
+    searchable = models.BooleanField('searchable',
         default=True,
         help_text='Enable data file search and keyword filter.'
     )
