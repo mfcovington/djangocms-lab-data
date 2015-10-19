@@ -19,7 +19,7 @@ class CMSDataFileSetPlugin(CMSPluginBase):
 
     def render(self, context, instance, placeholder):
         data_file_set = instance.data_file_set
-        data_file_list = data_file_set.data_files.all()
+        data_file_list = data_file_set.data_files.filter(is_published=True)
 
         menu = base_data_menu(context['request'].toolbar.get_or_create_menu(
             'data-menu', 'Data'))
@@ -28,6 +28,7 @@ class CMSDataFileSetPlugin(CMSPluginBase):
             'data_list': data_file_list,
             'data_list_tags': get_data_list_tags(data_file_list),
             'unique_id': 's{}i{}'.format(data_file_set.id, instance.id),
+            'is_published': data_file_set.is_published,
             'label': data_file_set.label,
             'pagination': data_file_set.pagination,
             'searchable': data_file_set.searchable,

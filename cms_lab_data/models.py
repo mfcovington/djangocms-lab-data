@@ -139,7 +139,9 @@ class DataFileSet(models.Model):
 
 
 class DataFileSetPlugin(CMSPlugin):
-    data_file_set = models.ForeignKey('cms_lab_data.DataFileSet')
+    data_file_set = models.ForeignKey('cms_lab_data.DataFileSet',
+        limit_choices_to={'is_published': True},
+    )
 
     def __str__(self):
         return self.data_file_set.name

@@ -1,5 +1,7 @@
 {% block content %}
 
-  {% include 'cms_lab_data/_searchable-data-list.html' with list_var='listVar'|add:unique_id list_id='search-list-'|add:unique_id search_id='search-'|add:unique_id filter_id='filter-'|add:unique_id search_filter_id='search-filter-'|add:unique_id %}
+  {% if is_published %}
+    {% include 'cms_lab_data/_searchable-data-list.html' with list_var='listVar'|add:unique_id list_id='search-list-'|add:unique_id search_id='search-'|add:unique_id filter_id='filter-'|add:unique_id search_filter_id='search-filter-'|add:unique_id %}
+  {% endif %}
 
 {% endblock content %}
