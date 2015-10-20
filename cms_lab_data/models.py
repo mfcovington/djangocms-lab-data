@@ -94,7 +94,10 @@ class DataFileSet(models.Model):
         related_name='%(app_label)s_%(class)s_image',
     )
 
-    data_files = models.ManyToManyField(DataFile)
+    data_files = models.ManyToManyField(DataFile,
+        blank=True,
+        null=True,
+    )
 
     pagination = models.PositiveIntegerField('files / page',
         default=10,
