@@ -50,6 +50,10 @@
   margin-top: 5px;
 }
 
+.modal-open {
+  overflow-y: auto;
+}
+
 
 /**************/
 /* PAGINATION */
