@@ -14,8 +14,8 @@ class DataFile(models.Model):
     )
 
     slug = models.SlugField(
-        help_text='Enter a unique <a href="https://en.wikipedia.org/wiki/' \
-                  'Semantic_URL#Slug" target="_blank">slug</a> for this data file.<br>' \
+        help_text='Enter a unique <a href="https://en.wikipedia.org/wiki/'
+                  'Semantic_URL#Slug" target="_blank">slug</a> for this data file.<br>'
                   '(Prepopulated in the admin page based on the data file name.)',
         unique=True,
     )
@@ -62,22 +62,22 @@ class DataFile(models.Model):
 
 class DataFileSet(models.Model):
     name = models.CharField('name',
-        help_text="Enter a unique name for this Data File Set.<br>" \
+        help_text="Enter a unique name for this Data File Set.<br>"
                   "This won't be displayed on the site.",
         max_length=255,
         unique=True,
     )
 
     slug = models.SlugField(
-        help_text='Enter a unique <a href="https://en.wikipedia.org/wiki/' \
-                  'Semantic_URL#Slug" target="_blank">slug</a> for this data file set.<br>' \
+        help_text='Enter a unique <a href="https://en.wikipedia.org/wiki/'
+                  'Semantic_URL#Slug" target="_blank">slug</a> for this data file set.<br>'
                   '(Prepopulated in the admin page based on the data file set name.)',
         unique=True,
     )
 
     label = models.CharField('label',
         default='Data',
-        help_text='Enter a label for this Data File Set.<br>' \
+        help_text='Enter a label for this Data File Set.<br>'
                   'This will be the heading displayed above the data files.',
         max_length=255,
     )
@@ -101,21 +101,21 @@ class DataFileSet(models.Model):
 
     pagination = models.PositiveIntegerField('files / page',
         default=10,
-        help_text="How many data files should be displayed per page? " \
+        help_text="How many data files should be displayed per page? "
                   "To show all at once, enter '0'.",
     )
 
     max_words_file_description = models.PositiveIntegerField('max words',
         default=40,
-        help_text='Enter the maximum # of words to display for a data file description.<br>' \
+        help_text='Enter the maximum # of words to display for a data file description.<br>'
                   'Truncated descriptions will have a button for displaying more info.',
     )
 
     word_buffer_file_description = models.PositiveIntegerField('word buffer',
         default=10,
-        help_text="The 'word buffer' prevents descriptions from being truncated " \
-                  "if they are only slightly over the 'max words' cutoff.<br>" \
-                  "For example, with 'max words' of 40 and a 'word buffer' of 10, " \
+        help_text="The 'word buffer' prevents descriptions from being truncated "
+                  "if they are only slightly over the 'max words' cutoff.<br>"
+                  "For example, with 'max words' of 40 and a 'word buffer' of 10, "
                   "descriptions longer than 50 words will be truncated to 40.",
     )
 
