@@ -34,15 +34,9 @@ CMS Lab Data is a Django app for organizing data files and sets of data files wi
         MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
         ```
 
-    - Add `filer` and `easy_thumbnail` settings: 
+    - Add `easy_thumbnail` settings: 
 
         ```python
-        # For filer's Django 1.7 compatibility
-        MIGRATION_MODULES = {
-            ...
-            'filer': 'filer.migrations_django',
-        }
-
         # For easy_thumbnails to support retina displays (recent MacBooks, iOS)
         THUMBNAIL_HIGH_RESOLUTION = True
         THUMBNAIL_QUALITY = 95
