@@ -27,13 +27,6 @@ CMS Lab Data is a Django app for organizing data files and sets of data files wi
         )
         ```
 
-    - Specify your media settings, if not already specified:
-
-        ```python
-        MEDIA_URL = '/media/'
-        MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-        ```
-
     - Add `easy_thumbnail` settings: 
 
         ```python
